@@ -228,14 +228,15 @@ return [
 
     ],
 
-    'providers' => [
-        ：
-  Barryvdh\Debugbar\ServiceProvider::class,
-  ],
+    // デバックバー導入用記述　syntaxError吐くのでCO
+    // 'providers' => [
+    //     ：
+    // Barryvdh\Debugbar\ServiceProvider::class,
+    // ],
 
-  'aliases' => [
-        ：
-  'Debugbar' => Barryvdh\Debugbar\Facade::class,
-  ],
+    // 'aliases' => [s
+    //     ：
+    // 'Debugbar' => Barryvdh\Debugbar\Facade::class,
+    // ],
 
 ];
