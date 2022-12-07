@@ -24,6 +24,17 @@ class UsersTableSeeder extends Seeder
                 'role' => '4',
                 'password' =>  bcrypt('password'),
             ],
+            [
+                'over_name' => '大沢',
+                'under_name' => '亮輔',
+                'over_name_kana' => 'オオサワ',
+                'under_name_kana' => 'リョウスケ',
+                'mail_address' => 'mails@mail',
+                'sex' => '1',
+                'birth_day' => '1922-02-25',
+                'role' => '1',
+                'password' =>  bcrypt('password'),
+            ],
         ]);
     }
 }
