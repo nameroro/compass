@@ -64,6 +64,7 @@
           <label style="font-size:13px">女性</label>
           <input type="radio" name="sex" class="sex" value="3">
           <label style="font-size:13px">その他</label>
+          <p>{{$errors->first('sex')}}</p>
         </div>
         <div class="mt-3">
           <label class="d-block m-0 aa" style="font-size:13px">生年月日</label>
@@ -162,6 +163,7 @@
           <label style="font-size:13px">教師(英語)</label>
           <input type="radio" name="role" class="other_role role" value="4">
           <label style="font-size:13px" class="other_role">生徒</label>
+          <p>{{$errors->first('role')}}</p>
         </div>
         <div class="select_teacher d-none">
           <label class="d-block m-0" style="font-size:13px">選択科目</label>
