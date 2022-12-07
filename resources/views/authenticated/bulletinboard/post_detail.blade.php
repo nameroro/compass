@@ -9,7 +9,7 @@
           </div>
           <div>
             <span class="edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
-            <a href="{{ route('post.delete', ['id' => $post->id]) }}">削除</a>
+            <a href="{{ route('post.delete', ['id' => $post->id]) }}" onclick = "return confirm('この投稿を削除します。よろしいでしょうか？')">削除</a>
           </div>
         </div>
 
@@ -59,9 +59,15 @@
       <div class="w-100">
         <div class="modal-inner-title w-50 m-auto">
           <input type="text" name="post_title" placeholder="タイトル" class="w-100">
+          @if($errors->first('post_title'))
+          <span class="error_message">{{ $errors->first('post_title') }}</span>
+          @endif
         </div>
         <div class="modal-inner-body w-50 m-auto pt-3 pb-3">
           <textarea placeholder="投稿内容" name="post_body" class="w-100"></textarea>
+          @if($errors->first('post_body'))
+          <span class="error_message">{{ $errors->first('post_body') }}</span>
+          @endif
         </div>
         <div class="w-50 m-auto edit-modal-btn d-flex">
           <a class="js-modal-close btn btn-danger d-inline-block" href="">閉じる</a>
