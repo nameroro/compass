@@ -21,6 +21,23 @@ class PostRequest extends FormRequest
      *
      * @return array
      */
+
+    public function getValidatorInstance()
+    {
+        $this->input('old_year');
+        $this->input('old_month');
+        $this->input('old_day');
+
+        $datetime = implode('-', $this->only(['old_year', 'old_month', 'old_day']));
+
+        // dd($datetime);
+        $this->merge([
+            'datetime' => $datetime,
+        ]);
+
+        return parent::getValidatorInstance();
+    }
+
     public function rules()
     {
         return [
@@ -30,9 +47,10 @@ class PostRequest extends FormRequest
             'under_name_kana' => 'required|regex:/^[ア-ン゛゜ァ-ォャ-ョー]+$/u|max:30',
             'mail_address' => 'required|max:100|unique:users,mail_address|email',
             'sex' => 'required',
-            'old_year' => 'required_with:old_month,old_day|after:2000|before:today',
+            'old_year' => 'required_with:old_month,old_day',
             'old_month' => 'required_with:old_year,old_day',
             'old_day' => 'required_with:old_month,old_year',
+            'datetime' => 'required|date|after:2000-1-1|before:today',
             'role' => 'required',
             'password' => 'required|alpha_num|min:8|max:30|confirmed',
             'password_confirmation' => 'required|alpha_num|min:8|max:30',
@@ -52,10 +70,14 @@ class PostRequest extends FormRequest
             'mail_address.unique' => '※このメールアドレスは既に使用されています',
             'sex.required' => '※性別は「男性」「女性」「その他」から選択して下さい',
             'old_year.required_with' => '※生年月日が未入力です',
-            'old_year.after' => '※2000年1月1日から今日までの日付を入力して下さい',
-            'old_year.before' => '※2000年1月1日から今日までの日付を入力して下さい',
+            // 'old_year.after' => '※2000年1月1日から今日までの日付を入力して下さい',
+            // 'old_year.before' => '※2000年1月1日から今日までの日付を入力して下さい',
             'old_month.required_with' => '※生年月日が未入力です',
             'old_day.required_with' => '※生年月日が未入力です',
+            'datetime.required' => '※生年月日が未入力です',
+            'datetime.date' => '※正しい日付を入力して下さい',
+            'datetime.after' => '※2000年1月1日から今日までの日付を入力して下さい',
+            'datetime.before' => '※2000年1月1日から今日までの日付を入力して下さい',
             'role.required' => '※役職は「講師(国語)」「講師(数学)」「教師(英語)」「生徒」から選択して下さい',
             'password.required' => '※パスワードを入力して下さい',
             'password.alpha_num' => '※パスワードは英数字のみで入力して下さい',

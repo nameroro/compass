@@ -149,6 +149,7 @@
             <option value="31">31</option>
           </select>
           <label style="font-size:13px">月</label>
+          <p>{{ $errors->first('datetime') }}</p>
           <p>{{ $errors->first('old_year') }}</p>
           <p>{{ $errors->first('old_month') }}</p>
           <p>{{ $errors->first('old_day') }}</p>
