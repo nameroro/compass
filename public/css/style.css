@@ -16,8 +16,8 @@ li {
   list-style: none;
 }
 
-/* 新規登録 */
-.mt-3 p {
+/* バリデーション */
+.vld p {
   color: red;
   font-size: x-small;
 }
