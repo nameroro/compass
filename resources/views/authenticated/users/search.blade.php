@@ -82,8 +82,8 @@
         <div class="search_conditions_inner">
           <div>
             <label>性別</label>
-            <span>男</span><input type="radio" name="sex" value="1" form="userSearchRequest">
-            <span>女</span><input type="radio" name="sex" value="2" form="userSearchRequest">
+            <span>男 </span><input type="radio" name="sex" value="1" form="userSearchRequest">
+            <span>女 </span><input type="radio" name="sex" value="2" form="userSearchRequest">
           </div>
           <div>
             <label>権限</label>
@@ -97,6 +97,9 @@
           </div>
           <div class="selected_engineer">
             <label>選択科目</label>
+            <li>国語 <input type="checkbox" name="subject" value="1" form="userSearchRequest"></li>
+            <li>数学 <input type="checkbox" name="subject" value="2" form="userSearchRequest"></li>
+            <li>英語 <input type="checkbox" name="subject" value="3" form="userSearchRequest"></li>
           </div>
         </div>
       </div>
