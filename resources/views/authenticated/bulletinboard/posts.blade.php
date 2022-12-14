@@ -34,11 +34,30 @@
       </div>
       <input type="submit" name="like_posts" class="category_btn" value="いいねした投稿" form="postSearchRequest">
       <input type="submit" name="my_posts" class="category_btn" value="自分の投稿" form="postSearchRequest">
-      <ul>
+
+        <!-- <ul>
+          @foreach($categories as $category)
+          <li class="main_categories" category_id="{{ $category->id }}"><span>{{ $category->main_category }}<span>
+              <ul >
+                @foreach($category->subCategories as $sub_category)
+                  <li><span>{{ $sub_category->sub_category }}<span></li>
+                @endforeach
+              </ul>
+          </li>
+          @endforeach
+        </ul> -->
+
+      <div id="accordion" class="accordion-container">
         @foreach($categories as $category)
-        <li class="main_categories" category_id="{{ $category->id }}"><span>{{ $category->main_category }}<span></li>
+        <h4 class="main_categories accordion-title js-accordion-title">{{ $category->main_category }}</h4>
+        <div class="accordion-content">
+          @foreach($category->subCategories as $sub_category)
+          <p>{{ $sub_category->sub_category }}</p>
+          @endforeach
+        </div><!--/.accordion-content-->
         @endforeach
-      </ul>
+      </div><!--/#accordion-->
+
     </div>
   </div>
   <form action="{{ route('post.show') }}" method="get" id="postSearchRequest"></form>

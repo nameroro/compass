@@ -9,6 +9,9 @@
         @foreach($main_categories as $main_category)
         <optgroup label="{{ $main_category->main_category }}"></optgroup>
         <!-- サブカテゴリー表示 -->
+          @foreach($main_category->subCategories as $sub_category)
+          <option value="{{ $main_category->id }}">{{ $sub_category->sub_category }}</option>
+          @endforeach
         </optgroup>
         @endforeach
       </select>
