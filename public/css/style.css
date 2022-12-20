@@ -58,7 +58,8 @@ li {
 }
 
 .past-day {
-  background: #EEE;
+  /* background: #EEE; */
+  background: #E7E7E7;
 }
 
 .calendar-td {
