@@ -20,11 +20,11 @@
   <div class="modal__content">
     <form action="{{ route('deleteParts') }}" method="post">
       <div class="w-100">
-        <div class=" w-50 m-auto">
-          <p>予約日：<span class="modal-date"></span></p>
+        <div class="modal-date w-50 m-auto">
+          <p>予約日：<span></span></p>
         </div>
         <div class="modal-part w-50 m-auto pt-3">
-          <p>時間：<span class="modal-part"></span></p>
+          <p>時間：<span></span></p>
         </div>
         <div class="w-50 m-auto pt-3 pb-3">
           <p>上記の予約をキャンセルしてもよろしいですか？</p>

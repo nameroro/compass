@@ -19,7 +19,7 @@ use Auth;
 class PostsController extends Controller
 {
     public function show(Request $request){
-        $posts = Post::with('user', 'postComments')->get();
+        $posts = Post::with('user', 'postComments', 'subCategories')->get();
         $categories = MainCategory::with('subCategories')->get();
         $like = new Like;
         $post_comment = new Post;
@@ -38,7 +38,7 @@ class PostsController extends Controller
             $posts = Post::with('user', 'postComments')
             ->where('user_id', Auth::id())->get();
         }
-        // dd($categories);
+        // dd($posts);
         return view('authenticated.bulletinboard.posts', compact('posts', 'categories', 'like', 'post_comment'));
     }
 
@@ -58,6 +58,9 @@ class PostsController extends Controller
             'post_title' => $request->post_title,
             'post' => $request->post_body
         ]);
+        $posts = Post::findOrFail($post->id);
+        //ここがエラー
+        $posts->sub_categories()->attach($post);
         return redirect()->route('post.show');
     }
 
