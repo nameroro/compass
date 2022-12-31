@@ -49,7 +49,10 @@ class PostsController extends Controller
 
     public function postInput(){
         $main_categories = MainCategory::with('subCategories')->get();
-        return view('authenticated.bulletinboard.post_create', compact('main_categories'));
+        $sub_categories = SubCategory::with('mainCategory')->get();
+        // dd($main_categories, $sub_categories);
+        //formのpostCreateのpost_category_idの中身がmainのidなのでこれをsubのidにしたい
+        return view('authenticated.bulletinboard.post_create', compact('main_categories', 'sub_categories'));
     }
 
     public function postCreate(PostFormRequest $request){
@@ -58,9 +61,11 @@ class PostsController extends Controller
             'post_title' => $request->post_title,
             'post' => $request->post_body
         ]);
+        // $sub_categories = $request->post_category_id;
+        $sub_categories = SubCategory::where('id', $request->post_category_id)->get();
         $posts = Post::findOrFail($post->id);
-        //ここがエラー
-        $posts->sub_categories()->attach($post);
+        $posts->subCategories()->attach($sub_categories);
+        // dd($posts);
         return redirect()->route('post.show');
     }
 

@@ -6,7 +6,7 @@
     <div class="">
       <p class="mb-0">カテゴリー</p>
       <select class="w-100" form="postCreate" name="post_category_id">
-        @foreach($main_categories as $main_category)
+        @foreach($sub_categories->mainCategory  as $main_category)
         <optgroup label="{{ $main_category->main_category }}"></optgroup>
         <!-- サブカテゴリー表示 -->
           @foreach($main_category->subCategories as $sub_category)
