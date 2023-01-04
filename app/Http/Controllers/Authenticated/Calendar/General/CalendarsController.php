@@ -15,7 +15,10 @@ class CalendarsController extends Controller
 {
     public function show(){
         $calendar = new CalendarView(time());
-        return view('authenticated.calendar.general.calendar', compact('calendar'));
+        $reserve = Auth::user()->reserveSettings()->get();
+        // $reserve = ReserveSettings::find(98)->users->first()->pivot;
+        // dd($reserve);
+        return view('authenticated.calendar.general.calendar', compact('calendar', 'reserve'));
     }
 
     public function reserve(Request $request){
@@ -36,5 +39,8 @@ class CalendarsController extends Controller
         return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
     }
 
-    // public function delete()
+    public function delete(Request $request){
+        Auth::user()->reserveSettings()->detach($request->getPart);
+        return back();
+    }
 }

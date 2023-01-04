@@ -15,6 +15,7 @@
     </div>
   </div>
 </div>
+<p>{{ $reserve }}</p>
 <div class="modal js-modal">
   <div class="modal__bg js-modal-close"></div>
   <div class="modal__content">
