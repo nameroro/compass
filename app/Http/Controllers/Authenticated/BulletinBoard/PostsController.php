@@ -63,9 +63,9 @@ class PostsController extends Controller
         ]);
         // $sub_categories = $request->post_category_id;
         $sub_categories = SubCategory::where('id', $request->post_category_id)->get();
+        // dd($sub_categories);
         $posts = Post::findOrFail($post->id);
         $posts->subCategories()->attach($sub_categories);
-        // dd($posts);
         return redirect()->route('post.show');
     }
 
