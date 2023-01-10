@@ -266,13 +266,6 @@ li {
   cursor: pointer;
 }
 
-.accordion-container .accordion-title:hover,
-.accordion-container .accordion-title:active,
-.accordion-container .content-entry.open .accordion-title {
-  /* background-color: #00aaa7; */
-  /* color: white; */
-}
-
 .accordion-container .accordion-title:hover i:before,
 .accordion-container .accordion-title:hover i:active,
 .accordion-container .content-entry.open i {
