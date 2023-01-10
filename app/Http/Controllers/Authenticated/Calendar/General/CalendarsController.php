@@ -16,7 +16,7 @@ class CalendarsController extends Controller
     public function show(){
         $calendar = new CalendarView(time());
         $reserve = Auth::user()->reserveSettings()->get();
-        // $reserve = ReserveSettings::find(98)->users->first()->pivot;
+        // $reserve = Auth::user()->reserveSettings()->first();
         // dd($reserve);
         return view('authenticated.calendar.general.calendar', compact('calendar', 'reserve'));
     }
@@ -25,6 +25,7 @@ class CalendarsController extends Controller
         DB::beginTransaction();
         try{
             $getPart = $request->getPart;
+            dd($getPart);
             $getDate = $request->getData;
             $reserveDays = array_filter(array_combine($getDate, $getPart));
             foreach($reserveDays as $key => $value){
@@ -40,6 +41,10 @@ class CalendarsController extends Controller
     }
 
     public function delete(Request $request){
+        $getDate = $request->getDate;
+        $getPart = $request->getPart;
+        $delete_reserve = $request->reserve_id;
+        dd($getDate, $getPart, $delete_reserve);
         Auth::user()->reserveSettings()->detach($request->getPart);
         return back();
     }
