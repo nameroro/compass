@@ -26,11 +26,11 @@
       <div class="w-100">
         <div class="modal-date w-50 m-auto">
           <p>予約日：<span></span></p>
-          <input type="hidden" name="getDate" value="{{ $reserve }}">
+          <input type="hidden" name="getDate" value="">
         </div>
         <div class="modal-part w-50 m-auto pt-3">
           <p>時間：<span></span></p>
-          <input type="hidden" name="getPart" value="い">
+          <input type="hidden" name="getPart" value="">
         </div>
         <div class="w-50 m-auto pt-3 pb-3">
           <p>上記の予約をキャンセルしてもよろしいですか？</p>

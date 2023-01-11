@@ -55,7 +55,8 @@
         <h4 class="main_categories accordion-title js-accordion-title">{{ $category->main_category }}</h4>
         <div class="accordion-content">
           @foreach($category->subCategories as $sub_category)
-          <p>{{ $sub_category->sub_category }}</p>
+          <input type="submit" name="category_word" value="{{ $sub_category->sub_category }}" form="postSearchRequest">
+          <!-- <input type="hidden" name="category_id" value="{{ $sub_category->id }}" form="postSearchRequest"> -->
           @endforeach
         </div><!--/.accordion-content-->
         @endforeach
