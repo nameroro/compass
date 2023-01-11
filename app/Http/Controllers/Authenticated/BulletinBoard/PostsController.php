@@ -30,11 +30,12 @@ class PostsController extends Controller
         }else if($request->category_word){
             $sub_category = $request->category_word;
             $sub_category_id = $request->category_id;
+            dd($request);
             $posts = Post::with('subCategories')
             ->where('id', $sub_category_id)->get();
-            // $posts = Post::with(['user', 'postComments', 'subCategories' => function ($query) use ($sub_category_id) {
-            //     $query->where('sub_category', $sub_category_id);
-            //     }])->get();
+            $posts = Post::with(['user', 'postComments', 'subCategories' => function ($query) use ($sub_category_id) {
+                $query->where('sub_category', $sub_category_id);
+                }])->get();
         }else if($request->like_posts){
             $likes = Auth::user()->likePostId()->get('like_post_id');
             $posts = Post::with('user', 'postComments')
