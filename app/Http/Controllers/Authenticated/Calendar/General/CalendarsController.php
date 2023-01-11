@@ -25,7 +25,7 @@ class CalendarsController extends Controller
         DB::beginTransaction();
         try{
             $getPart = $request->getPart;
-            dd($getPart);
+            // dd($getPart);
             $getDate = $request->getData;
             $reserveDays = array_filter(array_combine($getDate, $getPart));
             foreach($reserveDays as $key => $value){
@@ -44,8 +44,8 @@ class CalendarsController extends Controller
         $getDate = $request->getDate;
         $getPart = $request->getPart;
         $delete_reserve = $request->reserve_id;
-        dd($getDate, $getPart, $delete_reserve);
-        Auth::user()->reserveSettings()->detach($request->getPart);
+        // dd($getDate, $getPart, $delete_reserve);
+        Auth::user()->reserveSettings()->detach();
         return back();
     }
 }
