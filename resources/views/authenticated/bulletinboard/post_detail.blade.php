@@ -7,13 +7,18 @@
         <div class="detail_inner_head">
           <div>
           </div>
-          <div>
-            <span class="edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
-            <a href="{{ route('post.delete', ['id' => $post->id]) }}" onclick = "return confirm('この投稿を削除します。よろしいでしょうか？')">削除</a>
+          <div class="detail_post_btn">
+            <span class="edit-modal-open btn" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
+            <a href="{{ route('post.delete', ['id' => $post->id]) }}" onclick = "return confirm('この投稿を削除します。よろしいでしょうか？')" class="btn">削除</a>
           </div>
         </div>
 
-        <div class="contributor d-flex">
+        <div class="contributor">
+          <div class="">
+            @foreach($post->subCategories as $sbctg)
+            <p class="post_ctg">{{ $sbctg->sub_category }}</p>
+            @endforeach
+          </div>
           <p>
             <span>{{ $post->user->over_name }}</span>
             <span>{{ $post->user->under_name }}</span>
@@ -21,11 +26,11 @@
           </p>
           <span class="ml-5">{{ $post->created_at }}</span>
         </div>
-        <div class="detsail_post_title">{{ $post->post_title }}</div>
+        <div class="detsail_post_title font-weight-bold">{{ $post->post_title }}</div>
         <div class="mt-3 detsail_post">{{ $post->post }}</div>
       </div>
       <div class="p-3">
-        <div class="comment_container">
+        <div class="comment_container ">
           <span class="">コメント</span>
           @foreach($post->postComments as $comment)
           <div class="comment_area border-top">
@@ -75,7 +80,7 @@
         <div class="w-50 m-auto edit-modal-btn d-flex">
           <a class="js-modal-close btn btn-danger d-inline-block" href="">閉じる</a>
           <input type="hidden" class="edit-modal-hidden" name="post_id" value="">
-          <input type="submit" class="btn btn-primary d-block" value="編集">
+          <input type="submit" class="btn d-block" value="編集">
         </div>
       </div>
       {{ csrf_field() }}

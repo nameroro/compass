@@ -13,8 +13,8 @@ use App\Searchs\SearchResultFactories;
 
 class UsersController extends Controller
 {
-
-    public function showUsers(Request $request){
+    public function showUsers(Request $request)
+    {
         $keyword = $request->keyword;
         $category = $request->category;
         $updown = $request->updown;
@@ -24,17 +24,20 @@ class UsersController extends Controller
         $userFactory = new SearchResultFactories();
         $users = $userFactory->initializeUsers($keyword, $category, $updown, $gender, $role, $subjects);
         $subjects = Subjects::all();
+        $allUsers = User::all();
         // dd($users);
-        return view('authenticated.users.search', compact('users', 'subjects'));
+        return view('authenticated.users.search', compact('users', 'subjects', 'allUsers'));
     }
 
-    public function userProfile($id){
+    public function userProfile($id)
+    {
         $user = User::with('subjects')->findOrFail($id);
         $subject_lists = Subjects::all();
         return view('authenticated.users.profile', compact('user', 'subject_lists'));
     }
 
-    public function userEdit(Request $request){
+    public function userEdit(Request $request)
+    {
         $user = User::findOrFail($request->user_id);
         $user->subjects()->sync($request->subjects);
         return redirect()->route('user.profile', ['id' => $request->user_id]);
